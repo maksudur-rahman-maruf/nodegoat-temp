@@ -1,15 +1,15 @@
 name: CI-Polaris-Basic 
 on:
   push:
-    branches: [ main, master, develop, stage, release ]
+    branches: [ main, master, develop, stage, release, test ]
   pull_request:
-    branches: [ main, master, develop, stage, release ]
+    branches: [ main, master, develop, stage, release, test ]
   workflow_dispatch:
   
 jobs:
   build:
     # runs-on: [ ubuntu-latest ]
-    runs-on: self-hosted
+    runs-on: [ ubuntu-24.04-arm ]
     steps:
       - name: Checkout Source
         uses: actions/checkout@v3
@@ -17,22 +17,21 @@ jobs:
         uses: blackduck-inc/black-duck-security-scan@SIGINT-2971
         with:
           ### SCANNING: Required fields
-          polaris_server_url: ${{ vars.POLARIS_SERVER_URL_PIM }}
-          polaris_access_token: ${{ secrets.POLARIS_ACCESS_TOKEN_PIM }}
+          polaris_server_url: ${{ vars.POLARIS_SERVER_URL }}
+          polaris_access_token: ${{ secrets.POLARIS_ACCESS_TOKEN }}
           polaris_assessment_types: "SAST"
+          polaris_branch_name: "main"
           
           ### SCANNING: Optional fields
-          polaris_application_name: 'maksud-test'
-          polaris_project_name: 'maksud-test'
-
-          # bridgecli_install_directory: '/home/integrations/linux_arm_bridge/bridge-cli-bundle-3.4.4-linux_arm'
- 
+          polaris_application_name: 'E2E-Integration-App'
+          polaris_project_name: 'TestProject'
           # polaris_test_sca_type: "SCA-PACKAGE"
           # polaris_test_sast_type: "SAST_RAPID"
 
           include_diagnostics: true
 
-          # bridgecli_download_version: 'https://artifactory.tools.duckutil.net/artifactory/clops-local/integrations/bridge/binaries/bridge-cli-bundle/3.4.17/bridge-cli-bundle-3.4.17-win64.zip'
+          # bridgecli_download_url: 'https://artifactory.tools.duckutil.net/artifactory/clops-local/integrations/bridge/binaries/bridge-cli-bundle/3.4.22/bridge-cli-bundle-3.4.22-linux64.zip'
+
           
           ### PULL REQUEST COMMENTS: Uncomment below to enable
           # polaris_prComment_enabled: true 

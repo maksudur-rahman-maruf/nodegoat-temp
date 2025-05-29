@@ -1,0 +1,39 @@
+trigger:
+- master
+
+pr:
+  branches:
+    include:
+    - master
+  paths:
+    exclude:
+    - README.md
+
+pool:
+  # vmImage: ubuntu-latest
+  name: akib
+  demands:
+   - agent.name -equals akib-linux
+  
+variables:
+  - group: Polaris
+
+steps:
+- task: SynopsysSecurityScan@1.7.4
+  displayName: 'Polaris Scan'
+  condition: not(eq(variables['Build.Reason'], 'PullRequest'))
+  inputs:
+    POLARIS_SERVER_URL: $(POLARIS_URL)
+    #POLARIS_ACCESS_TOKEN: $(POLARIS_TOKEN)
+    #POLARIS_APPLICATION_NAME: "test_jenkins"
+    #POLARIS_PROJECT_NAME: "springboot-pipeline-test"
+    #POLARIS_ASSESSMENT_TYPES: 'SCA,SAST' # Accepts Multiple Values
+    ### Uncomment below configuration to specify branch name in the Polaris Server
+    # BRIDGE_POLARIS_BRANCH_NAME: $(POLARIS_BRANCH)
+    ### Uncomment below configuration if Synopsys Bridge diagnostic files needs to be uploaded
+    # INCLUDE_DIAGNOSTICS: 'true'
+    #BRIDGE_POLARIS_REPORTS_SARIF_CREATE: true # Create SARIF report and upload it as artifact
+    #BRIDGE_POLARIS_REPORTS_SARIF_GROUPSCAISSUES: true # By default true
+    #BRIDGE_POLARIS_REPORTS_SARIF_FILE_PATH: '/Users/tmp/report.sarif.json' # File path including file name where SARIF report should be created
+    #BRIDGE_POLARIS_REPORTS_SARIF_SEVERITIES: 'CRITICAL,HIGH' # Accepts Multiple Values
+    #BRIDGE_POLARIS_REPORTS_SARIF_ISSUE_TYPES: 'SAST,SCA' # Accepts Multiple Values

@@ -14,7 +14,7 @@ jobs:
       - name: Checkout Source
         uses: actions/checkout@v3
       - name: Polaris Scan
-        uses: blackduck-inc/black-duck-security-scan@SIGINT-2971
+        uses: blackduck-inc/black-duck-security-scan@SIGINT-main
         with:
           ### SCANNING: Required fields
           polaris_server_url: ${{ vars.POLARIS_SERVER_URL }}

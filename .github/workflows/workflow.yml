@@ -30,7 +30,7 @@ jobs:
 
           include_diagnostics: true
 
-          bridgecli_download_version: '3.5.1'
+          # bridgecli_download_version: '3.5.1'
 
           # bridgecli_download_url: 'https://repo.blackduck.com/bds-integrations-release/com/blackduck/integration/bridge/binaries/bridge-cli-bundle/latest/bridge-cli-bundle-linux_arm.zip'
 

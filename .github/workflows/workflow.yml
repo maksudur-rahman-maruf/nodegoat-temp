@@ -26,7 +26,7 @@ jobs:
           polaris_application_name: 'E2E-Integration-App'
           polaris_project_name: 'TestProject'
           # polaris_test_sca_type: "SCA-PACKAGE"
-          polaris_test_sast_type: "SAST_RAPID"
+          # polaris_test_sast_type: "SAST_RAPID"
 
           include_diagnostics: true
 

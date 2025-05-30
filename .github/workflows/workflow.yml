@@ -14,7 +14,7 @@ jobs:
       - name: Checkout Source
         uses: actions/checkout@v3
       - name: Polaris Scan
-        uses: blackduck-inc/black-duck-security-scan@SIGINT-main
+        uses: blackduck-inc/black-duck-security-scan@fix-SIGINT-2971
         with:
           ### SCANNING: Required fields
           polaris_server_url: ${{ vars.POLARIS_SERVER_URL }}
@@ -30,7 +30,7 @@ jobs:
 
           include_diagnostics: true
 
-          bridgecli_download_url: 'https://repo.blackduck.com/bds-integrations-release/com/blackduck/integration/bridge/binaries/bridge-cli-bundle/latest/bridge-cli-bundle-linux_arm.zip'
+          # bridgecli_download_url: 'https://repo.blackduck.com/bds-integrations-release/com/blackduck/integration/bridge/binaries/bridge-cli-bundle/latest/bridge-cli-bundle-linux_arm.zip'
 
           
           ### PULL REQUEST COMMENTS: Uncomment below to enable

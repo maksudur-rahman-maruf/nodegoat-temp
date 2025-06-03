@@ -22,6 +22,7 @@ jobs:
           polaris_assessment_types: "SAST"
           polaris_branch_name: "main"
           
+          
           ### SCANNING: Optional fields
           polaris_application_name: 'E2E-Integration-App'
           polaris_project_name: 'TestProject'
